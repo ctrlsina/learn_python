@@ -13,35 +13,35 @@ class BankAccount:
             print('there is something wrong')
     
     def deposit(self,amount):
+        '''Add amount to balance'''
         try:
-            self.deposit = amount
-            self.balance = self.balance + self.deposit
-            print (f'Your balance is updated!\n Deposit amount: {self.deposit} \n Your balance is {self.balance}')
-    
+            if amount >= 0:
+                self.balance += amount
+                print (f'Your balance is updated!\n Deposit amount: {amount} \n Your balance is {self.balance}')
+            elif amount < 0:
+                print('Please input positive number')
         except TypeError:
             print('please input number for balance')
         except ValueError:
             print('please input number for balance')
-        except:
-            print('there is something wrong')
     
     def withdraw(self, amount):
+        '''Subtract amount to balance'''
         try:
-            self.withdraw = amount
-            if (self.balance - self.withdraw >= 0):
-                self.balance = self.balance - self.withdraw
-                print(f'Withdraw success!\n Withdraw amount: {self.withdraw} \n Balance: {self.balance}')
-            else:
-                print('Your balance is not enough to do a withdrawal.')
-        
+            if (self.balance - amount >= 0) and amount > 0:
+                self.balance -= amount
+                print(f'Withdraw success!\n Withdraw amount: {amount} \n Balance: {self.balance}')
+            elif amount < 0: #To check amount withdrawed is positive number
+                print('Please input positive number')
+            elif self.balance - amount < 0: #to check if the remaining balance >= 0
+                print('Your balance is insufficient')
         except TypeError:
             print('please input number for balance')
         except ValueError:
             print('please input number for balance')
-        except:
-            print('there is something wrong')
 
     def display_balance(self):
+        '''Display current balance'''
         print(f'Your balance is {self.balance}')
 
 alex = BankAccount('Alex Smith', 1000)
